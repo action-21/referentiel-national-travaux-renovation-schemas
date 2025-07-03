@@ -1,0 +1,413 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Déclaration de travaux de rénovation
+type: object
+properties:
+  id:
+    title: Identifiant du geste de travaux
+    type: string
+    format: uuid
+  poste:
+    title: Poste de travaux
+    type: string
+    enum:
+      - chauffage-ecs
+      - isolation-combles-toitures
+      - isolation-murs
+      - isolation-planchers-bas
+      - menuiseries-exterieures
+      - ventilation
+      - refroidissement
+      - regulation
+      - reseau
+      - protections-solaires
+  geste:
+    title: Geste de travaux
+    type: string
+    enum:
+      - fenetre-porte-fenetres
+      - porte
+      - ventilation-hybride
+      - ventilation-mecanique-centralisee-simple-flux
+      - ventilation-mecanique-centralisee-double-flux
+      - ventilation-mecanique-repartie
+      - conduit-evacuation-produits-combustion
+      - isolation-reseau-chauffage
+      - isolation-reseau-eau-chaude-sanitaire
+      - isolation-point-singulier-reseau
+      - optimiseur-relance
+      - recuperateur-chaleur-condensation
+      - systeme-variation-electronique-vitesse-sur-une-pompe
+      - climatiseur
+      - reseau-froid
+      - regulation-sonde-temperature-exterieure
+      - robinet-thermostatique
+      - systeme-comptage-energie-chauffage
+      - systeme-regulation-programmation-intermittence
+      - systeme-regulation-consommation-chauffe-eau-electrique-effet-joule
+      - fermeture-isolante
+      - protection-solaire-façades
+      - protection-solaire-ouvrants
+      - protection-solairee-toiture
+      - isolation-planchers-combles-perdus
+      - isolation-rampants-toiture-exterieur
+      - isolation-rampants-toiture-interieur
+      - isolatione-toiture-terrasse-exterieur
+      - isolation-murs-exterieur
+      - isolation-murs-interieur
+      - isolation-plancher-exterieur
+      - isolation-plancher-interieur
+      - chaudiere-biomasse
+      - chaudiere-gaz
+      - chauffe-bain
+      - chauffe-eau-solaire
+      - chauffe-eau-thermodynamique
+      - radiateur-electrique
+      - plancher-chauffant-basse-temperature
+      - radiateur-basse-temperature
+      - poele-insert
+      - pompe-chaleur-air-air
+      - pompe-chaleur-air-eau
+      - pompe-chaleur-eau-eau
+      - pompe-chaleur-hybride
+      - pompe-chaleur-sol-eau
+      - reseau-chaleur
+      - systeme-solaire-combine
+      - systeme-solaire-hybride
+  statut:
+    title: Statut
+    type: string
+    enum:
+      - engage
+      - realise
+      - abandonne
+  logements:
+    title: Nombre de logements concernés
+    type: integer
+    minimum: 1
+  surface:
+    title: Surface utile
+    description: Surface utile couverte par l'élément installé exprimée en m²
+    type: number
+    minimumExlusive: 0
+  date_engagement:
+    title: Date d'engagement des travaux
+    type: string
+    format: date
+  date_realisation:
+    title: Date de réalisation des travaux
+    type: [string, "null"]
+    format: date
+  adresse:
+    title: Adresse du geste
+    description: https://github.com/BaseAdresseNationale/adresse.data.gouv.fr/blob/master/public/schemas/adresses-csv.md
+    type: object
+    properties:
+      id:
+        title: Identifiant de l'adresse dans la BAN
+        type: string
+      numero:
+        title: Numéro de l'adresse dans la voie
+        type: string
+      rep:
+        title: Indice de répétition associé au numéro (par exemple bis, a…)
+        type: string
+      nom_voie:
+        title: Nom de la voie en minuscules accentuées
+        type: string
+      code_insee:
+        title: Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur
+        type: string
+      code_postal:
+        title: Code postal du bureau de distribution de la voie
+        type: string
+      nom_commune:
+        title: Nom officiel de la commune actuelle
+        type: string
+    required:
+      - id
+      - nom_voie
+      - code_insee
+      - code_postal
+      - nom_commune
+  batiment:
+    title: Bâtiment
+    description: https://rnb-fr.gitbook.io/documentation/api-et-outils/export-national-et-departemental
+    type: object
+    properties:
+      id:
+        title: Identifiant du bâtiment dans la RNB
+        type: string
+      status:
+        title: Statut du bâtiment
+        type: string
+      is_active:
+        title: Défini si le bâtiment est considéré comme un bâtiment réel (quel que soit sont statut).
+        type: boolean
+    required:
+      - id
+      - is_active
+  entreprises:
+    title: Entreprises de travaux
+    type: array
+    items:
+      type: object
+      properties:
+        denomination:
+          title: Dénomination de l'entreprise
+          type: string
+        siret:
+          title: SIRET de l'entreprise
+          type: string
+      required:
+        - denomination
+        - siret
+required:
+  - id
+  - poste
+  - geste
+  - statut
+  - logements
+  - surface
+  - date_engagement
+  - date_realisation
+  - adresse
+  - batiment
+  - entreprises
+oneOf:
+  - title: Geste engagé
+    type: object
+    propertie:
+      statut:
+        const: GesteEngage
+      date_realisation:
+        const: null
+    required:
+      - statut
+      - date_realisation
+  - title: Geste réalisé
+    type: object
+    propertie:
+      statut:
+        const: GesteRealise
+      date_realisation:
+        type: string
+        format: date
+    required:
+      - statut
+      - date_realisation
+allOf:
+  - if:
+      properties:
+        geste:
+          type: string
+          enum:
+            - fenetre-porte-fenetres
+            - porte
+            - isolation-point-singulier-reseau
+            - regulation-sonde-temperature-exterieure
+            - robinet-thermostatique
+            - systeme-comptage-energie-chauffage
+            - systeme-regulation-programmation-intermittence
+            - systeme-regulation-consommation-chauffe-eau-electrique-effet-joule
+            - fermeture-isolante
+            - radiateur-electrique
+            - radiateur-basse-temperature
+            - climatiseur
+            - poele-insert
+            - pompe-chaleur-air-air
+            - pompe-chaleur-air-eau
+            - pompe-chaleur-eau-eau
+            - pompe-chaleur-hybride
+            - pompe-chaleur-sol-eau
+            - reseau-chaleur
+            - systeme-solaire-combine
+            - systeme-solaire-hybride
+      required:
+        - geste
+    then:
+      $ref: "#/$defs/withNombre"
+  - if:
+      properties:
+        geste:
+          type: string
+          enum:
+            - chaudiere-biomasse
+            - chaudiere-gaz
+            - chauffe-bain
+            - chauffe-eau-solaire
+            - chauffe-eau-thermodynamique
+            - radiateur-electrique
+            - poele-insert
+            - pompe-chaleur-air-air
+            - pompe-chaleur-air-eau
+            - pompe-chaleur-eau-eau
+            - pompe-chaleur-hybride
+            - pompe-chaleur-sol-eau
+            - reseau-chaleur
+            - systeme-solaire-combine
+            - systeme-solaire-hybride
+      required:
+        - geste
+    then:
+      $ref: "#/$defs/withPuissance"
+  - if:
+      properties:
+        geste:
+          type: string
+          enum:
+            - isolation-reseau-chauffage
+            - isolation-reseau-eau-chaude-sanitaire
+      required:
+        - geste
+    then:
+      $ref: "#/$defs/withLongueur"
+  - if:
+      properties:
+        geste:
+          type: string
+          enum:
+            - fenetre-porte-fenetres
+            - porte
+      required:
+        - geste
+    then:
+      $ref: "#/$defs/withCoefficientSurfacique"
+  - if:
+      properties:
+        geste:
+          type: string
+          enum:
+            - isolation-planchers-combles-perdus
+            - isolation-rampants-toiture-exterieur
+            - isolation-rampants-toiture-interieur
+            - isolatione-toiture-terrasse-exterieur
+            - isolation-murs-exterieur
+            - isolation-murs-interieur
+            - isolation-plancher-exterieur
+            - isolation-plancher-interieur
+      required:
+        - geste
+    then:
+      $ref: "#/$defs/withResistanceThermique"
+  - if:
+      properties:
+        geste:
+          type: string
+          enum:
+            - climatiseur
+      required:
+        - geste
+    then:
+      $ref: "#/$defs/withSeer"
+  - if:
+      properties:
+        geste:
+          type: string
+          enum:
+            - chaudiere-biomasse
+            - chaudiere-gaz
+            - chauffe-bain
+      required:
+        - geste
+    then:
+      $ref: "#/$defs/withEtas"
+  - if:
+      properties:
+        geste:
+          type: string
+          enum:
+            - chauffe-eau-thermodynamique
+            - pompe-chaleur-air-air
+            - pompe-chaleur-air-eau
+            - pompe-chaleur-eau-eau
+            - pompe-chaleur-hybride
+            - pompe-chaleur-sol-eau
+            - reseau-chaleur
+            - systeme-solaire-combine
+            - systeme-solaire-hybride
+      required:
+        - geste
+    then:
+      $ref: "#/$defs/withScop"
+$defs:
+  withNombre:
+    type: object
+    properties:
+      nombre:
+        title: Nombre d'éléments installés
+        description: Nombre d'éléments installés dont les descriptifs sont identiques
+        type: integer
+        minimumExlusive: 0
+    required:
+      - nombre
+  withPuissance:
+    type: object
+    properties:
+      puissance:
+        title: Puissance nominale de l'élément installé
+        description: Puissance nominale de l'élément installé exprimée en kW
+        type: number
+        minimumExlusive: 0
+    required:
+      - puissance
+  withLongueur:
+    type: object
+    properties:
+      longueur:
+        title: Longueur de l'élément installé
+        description: Longueur de l'élément installé exprimé en m
+        type: number
+        minimumExlusive: 0
+    required:
+      - longueur
+  withCoefficientSurfacique:
+    type: object
+    properties:
+      coefficient_surfacique:
+        title: Coefficient de transmission surfacique
+        description: Coefficient de transmission surfacique de l'élément installé exprimé en W/m².K
+        type: number
+        minimumExlusive: 0
+    required:
+      - coefficient_surfacique
+  withResistanceThermique:
+    type: object
+    properties:
+      resistance_thermique:
+        title: Résistance thermique de l'élément installé
+        description: Résistance thermique de l'élément installé exprimée en m².K/W
+        type: number
+        minimumExlusive: 0
+    required:
+      - resistance_thermique
+  withSeer:
+    type: object
+    properties:
+      seer:
+        title: Coefficient d'efficacité rigorifique saisonnière
+        description: Coefficient d'efficacité rigorifique saisonnière de l'élément installé
+        type: number
+        minimumExlusive: 0
+    required:
+      - seer
+  withEtas:
+    type: object
+    properties:
+      etas:
+        title: Coefficient d'efficacité énergétique saisonnière
+        description: Coefficient d'efficacité énergétique saisonnière de l'élément installé exprimé en %
+        type: number
+        minimumExlusive: 0
+        maximum: 200
+    required:
+      - etas
+  withScop:
+    type: object
+    properties:
+      scop:
+        title: Coefficient de performance énergétique saisonnier
+        description: Coefficient de performance énergétique saisonnier de l'élément installé
+        type: number
+        minimumExlusive: 0
+    required:
+      - scop

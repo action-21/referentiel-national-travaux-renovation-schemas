@@ -1,0 +1,202 @@
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: chauffage-ecs
+  geste: pompe-chaleur-air-eau
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 100
+  puissance: 20
+  scop: 4
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: isolation-combles-toitures
+  geste: isolation-planchers-combles-perdus
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 100
+  resistance_thermique: 8
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: isolation-murs
+  geste: isolation-murs-exterieur
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 100
+  resistance_thermique: 6
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: isolation-planchers-bas
+  geste: isolation-planchers-bas-exterieur
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 100
+  resistance_thermique: 5
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: menuiseries-exterieures
+  geste: fenetre-porte-fenetres
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 10
+  nombre: 6
+  coefficient_surfacique: 1.1
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: ventilation
+  geste: ventilation-mecanique-centralisee-simple-flux
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 100
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: refroidissement
+  geste: climatiseur
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 100
+  nombre: 2
+  seer: 8
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: regulation
+  geste: robinet-thermostatique
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 100
+  nombre: 10
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: reseau
+  geste: isolation-reseau-chauffage
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 100
+  longueur: 20
+- id: bdc24956-dba0-4243-bbd7-d61a61d3ae8f
+  poste: protections-solaires
+  geste: fermeture-isolante
+  statut: realise
+  date_engagement: 2025-01-01
+  date_realisation: 2025-03-01
+  adresse:
+    id: 75107_8909_00020
+    numero: 20
+    nom_voie: Avenue de Ségur
+    code_insee: 75107
+    code_postal: 75007
+    nom_commune: Paris
+  batiment:
+    id: NHDE2W8HE3X3
+    status: constructed
+    is_active: true
+  logements: 1
+  surface: 100
+  nombre: 10
