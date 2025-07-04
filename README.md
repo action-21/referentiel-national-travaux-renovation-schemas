@@ -1,5 +1,3 @@
-# Référentiel National des Travaux de rénovation (RNT) - Schémas de données publiques
-
 <div align="center">
     <img width="80" height="auto" src="https://raw.githubusercontent.com/action-21/referentiel-national-travaux-renovation/refs/heads/main/assets/logo.svg" alt="RNT">
 </div>
@@ -10,11 +8,16 @@
 	<a href="https://github.com/action-21/referentiel-national-travaux-renovation-schemas">
 		Schémas de données
 	</a>&nbsp;&nbsp;&nbsp;
-	<a href="https://github.com/action-21/referentiel-national-travaux-renovation-opendata">
-		Open data
+	<a href="https://github.com/action-21/referentiel-national-travaux-renovation-doc">
+		Documentation
 	</a>&nbsp;&nbsp;&nbsp;
+	<a href="https://github.com/action-21/referentiel-national-travaux-renovation-app">
+		Plateforme
+	</a>
 </p>
 <br/>
+
+# Référentiel National des Travaux de rénovation (RNT) - Schémas de données publiques
 
 Schémas de données publiques du Référentiel National des Travaux de rénovation (RNT).
 
